@@ -1,53 +1,26 @@
-# Media-filter
+##media-filter 
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+## Purpose
+To allow a user to filter through the learning resources created by the Frontside team which includes podcasts, talks, and blogs. To present our resources in a fun and interactive way.
 
-## Prerequisites
+## Requirements
+### Index State
+As I user I want to see the most recent learning resources in their respective cards so that I can see which resources are available to consume.
+Given I am on the learning page, when I view the default state then I should see the 6 most recent learning resources.
+### View State
+As I user I want to be able to view a learning resource so that I can become a better developer.
+Given I am viewing learning resources, when I click a card then I am taken to the view page for the resource.
+### Podcast Tab
+As I user I want to view the most recent podcasts so I can see what podcasts are available to listen to.
+Given I am in the index state, when I click the podcast tab the media will be filtered to podcasts only.
+### Talks Tab
+//todo
+### Blogs Tab
+//todo
+### Search 
+//todo
+### Pagination
+//todo
 
-You will need the following things properly installed on your computer.
-
-* [Git](http://git-scm.com/)
-* [Node.js](http://nodejs.org/) (with NPM)
-* [Bower](http://bower.io/)
-* [Ember CLI](http://ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
-
-## Installation
-
-* `git clone <repository-url>` this repository
-* change into the new directory
-* `npm install`
-* `bower install`
-
-## Running / Development
-
-* `ember server`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](http://emberjs.com/)
-* [ember-cli](http://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
-
+## Reference
+![screenshot](https://d17oy1vhnax1f7.cloudfront.net/items/260F1C3M4141103I1g1t/Screen%20Shot%202016-08-24%20at%2010.10.58%20AM.png)
