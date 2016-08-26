@@ -20,5 +20,11 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
+
+  if (app.env === 'test') {
+    // Only import in test mode and place in test-supoprt.js
+    app.import(app.bowerDirectory + '/chai-jquery/chai-jquery.js', { type: 'test' });
+  }
+
   return app.toTree();
 };

@@ -1,0 +1,12 @@
+<div class="test-all-filter active"></div>
+<div class="test-podcast-filter"></div>
+<div class="test-talks-filter"></div>
+<div class="test-blog-filter"></div>
+
+
+
+{{#each model as |resource|}}
+  <div class="test-resource-card" title={{resource.title}}>
+    <span class="test-resource-card__type">{{resource.type}}</span>
+  </div>
+{{/each}}
