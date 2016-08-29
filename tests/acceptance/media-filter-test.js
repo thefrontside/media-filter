@@ -26,13 +26,15 @@ describe('Acceptance: MediaFilter', function() {
     });
 
     it("displays the most recent learning resources", function() {
-      expect($(".test-resource-card")).to.have.length(6);
-      expect($(".test-resource-card:eq(0)")).to.have.attr("title", "A Sprinkling of Ember");
-      expect($(".test-resource-card:eq(1)")).to.have.attr("title", "Implementing a Jenkins Extension Point with the Native Java API inside a Ruby Plugin");
-      expect($(".test-resource-card:eq(2)")).to.have.attr("title", "What it takes to bring Ruby to Jenkins");
-      expect($(".test-resource-card:eq(3)")).to.have.attr("title", "A Sprinkling of Ember");
-      expect($(".test-resource-card:eq(4)")).to.have.attr("title", "Implementing a Jenkins Extension Point with the Native Java API inside a Ruby Plugin");
-      expect($(".test-resource-card:eq(5)")).to.have.attr("title", "What it takes to bring Ruby to Jenkins");
+      let card = $('.test-resource-card');
+
+      expect(card).to.have.length(6);
+      expect(card.eq(0)).to.have.attr("title", "A Sprinkling of Ember");
+      expect(card.eq(1)).to.have.attr("title", "Implementing a Jenkins Extension Point with the Native Java API inside a Ruby Plugin");
+      expect(card.eq(2)).to.have.attr("title", "What it takes to bring Ruby to Jenkins");
+      expect(card.eq(3)).to.have.attr("title", "A Sprinkling of Ember");
+      expect(card.eq(4)).to.have.attr("title", "Implementing a Jenkins Extension Point with the Native Java API inside a Ruby Plugin");
+      expect(card.eq(5)).to.have.attr("title", "What it takes to bring Ruby to Jenkins");
     });
     it("displays the filters", function() {
       expect($('.test-all-filter')).to.have.length(1);
