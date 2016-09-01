@@ -51,7 +51,7 @@ export default function configure() {
         url: "http://frontsidethepodcast.simplecast.fm/5.html",
         publishDate: "UTC12-25-2016:10:10:10:Z01",
         tags: ["podcasts", "ember"],
-        imageUrl: "http://giphy.com/kick.gif",
+        imageUrl: image(),
         fullText: "i am a transcript",
         previewText: "Charles and Stephanie discuss how to kick ass at Ember"
       },
@@ -63,7 +63,7 @@ export default function configure() {
         url: "http://youtube.com/x4fal4820xbd",
         publishDate: "UTC12-25-2016:10:10:10:Z01",
         tags: ["handlebars", "composable helpers", "ember"],
-        imageUrl: "http://youtube.com/xhelxl58.jpg",
+        imageUrl: image(),
         fullText: "",
         previewText: "Recorded at EmberATX, Alex talks about..."
       },
@@ -75,7 +75,7 @@ export default function configure() {
         url: "http://frontside.io/blog/2016-melty-cpu.html",
         publishDate: "UTC12-25-2016:10:10:10:Z01",
         tags: ["disasters", "comedy", "node.js"],
-        imageUrl: "http://giphy.com/lolol.gif",
+        imageUrl: image(),
         fullText: "The other day, when blah blah...",
         previewText: "How I destroyd my laptop with a single NPM install"
       },
@@ -87,7 +87,7 @@ export default function configure() {
         url: "http://frontsidethepodcast.simplecast.fm/5.html",
         publishDate: "UTC12-25-2016:10:10:10:Z01",
         tags: ["podcasts", "ember"],
-        imageUrl: "http://giphy.com/kick.gif",
+        imageUrl: image(),
         fullText: "i am a transcript",
         previewText: "Charles and Stephanie discuss how to kick ass at Ember"
       },
@@ -99,7 +99,7 @@ export default function configure() {
         url: "http://youtube.com/x4fal4820xbd",
         publishDate: "UTC12-25-2016:10:10:10:Z01",
         tags: ["handlebars", "composable helpers", "ember"],
-        imageUrl: "http://youtube.com/xhelxl58.jpg",
+        imageUrl: image(),
         fullText: "",
         previewText: "Recorded at EmberATX, Alex talks about..."
       }
