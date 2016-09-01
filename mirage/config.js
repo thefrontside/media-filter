@@ -1,5 +1,10 @@
+import { faker } from 'ember-cli-mirage';
+
 export default function configure() {
 
+  let image = function() {
+    return faker.image.imageUrl();
+  };
   // These comments are here to help you get started. Feel free to delete them.
 
   /*
@@ -23,6 +28,7 @@ export default function configure() {
 
    http://www.ember-cli-mirage.com/docs/v0.2.x/shorthands/
    */
+
   this.get('/resources', function() {
     return [
       {
@@ -33,7 +39,7 @@ export default function configure() {
         url: "http://frontside.io/blog/2016-melty-cpu.html",
         publishDate: "UTC12-25-2016:10:10:10:Z01",
         tags: ["disasters", "comedy", "node.js"],
-        imageUrl: "http://www.giphy.com/lolol.gif",
+        imageUrl: image(),
         fullText: "The other day, when blah blah...",
         previewText: "How I destroyed my laptop with a single NPM install"
       },

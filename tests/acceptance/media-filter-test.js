@@ -56,7 +56,7 @@ describe('Acceptance: MediaFilter', function() {
       let card = '.test-resource-card';
 
       it("has an image", function() {
-        expect($(`${card} img`)).to.have.attr('src', 'http://www.giphy.com/lolol.gif');
+        expect($(`${card} img`)).to.have.attr('src');
       });
       it("has a title", function() {
         expect($(`${card}__title`)).to.have.attr('title', 'A Sprinkling of Ember');
