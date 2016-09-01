@@ -33,9 +33,9 @@ export default function configure() {
         url: "http://frontside.io/blog/2016-melty-cpu.html",
         publishDate: "UTC12-25-2016:10:10:10:Z01",
         tags: ["disasters", "comedy", "node.js"],
-        imageUrl: "http://giphy.com/lolol.gif",
+        imageUrl: "http://www.giphy.com/lolol.gif",
         fullText: "The other day, when blah blah...",
-        previewText: "How I destroyd my laptop with a single NPM install"
+        previewText: "How I destroyed my laptop with a single NPM install"
       },
       {
         id: "1dgaf10102",

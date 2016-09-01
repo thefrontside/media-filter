@@ -36,42 +36,42 @@ describe('Acceptance: MediaFilter', function() {
       expect(card.eq(4)).to.have.attr("title", "Implementing a Jenkins Extension Point with the Native Java API inside a Ruby Plugin");
       expect(card.eq(5)).to.have.attr("title", "What it takes to bring Ruby to Jenkins");
     });
+
     it("displays the filters", function() {
       expect($('.test-all-filter')).to.have.length(1);
       expect($('.test-podcast-filter')).to.have.length(1);
       expect($('.test-talks-filter')).to.have.length(1);
       expect($('.test-blog-filter')).to.have.length(1);
     });
+
     it("marks the all filter as active", function() {
       expect($('.test-all-filter')).to.have.class('active');
     });
+
     it("displays the search box", function() {
       expect($('.test-search-box')).to.have.length(1);
     });
 
-    describe.skip("the appearance of one of the cards", function() {
-      let card;
-      beforeEach(function() {
-        card = $('.test-resource-card');
-      });
+    describe("the appearance of one of the cards", function() {
+      let card = '.test-resource-card';
 
       it("has an image", function() {
-        expect($(card).find('img')).to.have.attr('src', 'http://www.lol.gif');
+        expect($(`${card} img`)).to.have.attr('src', 'http://www.giphy.com/lolol.gif');
       });
       it("has a title", function() {
-        expect($(card).find('.test-title')).to.have.text('A Sprinkling of Ember');
+        expect($(`${card}__title`)).to.have.attr('title', 'A Sprinkling of Ember');
       });
       it("has a category", function() {
-        expect($(card).find('.test-resource-type')).to.have.text('Software');
+        expect($(`${card}__type`)).to.have.attr('type', 'blog');
       });
       it("has preview text", function() {
-        expect($(card).find('.test-preview-text')).to.have.text('Some preview text');
+        expect($(`${card}__preview:eq(0)`)).to.have.text('How I destroyed my laptop with a single NPM install');
       });
       it("has a publication date", function() {
-        expect($('.test-resource-card')).to.have.prop('publish-date', 'UTC12-25-2016:10:10:10:Z01');
+        expect($(`${card}__publishDate:eq(0)`)).to.have.text('UTC12-25-2016:10:10:10:Z01');
       });
       it("is a link to the resource itself", function() {
-        expect($('.test-resource-card')).to.have.prop('href', 'http://www.somepath.com');
+        expect($(`${card}`)).to.have.attr('href', 'http://frontside.io/blog/2016-melty-cpu.html');
       });
     });
 

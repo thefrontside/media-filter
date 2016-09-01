@@ -2,11 +2,14 @@
 <div class="test-podcast-filter"></div>
 <div class="test-talks-filter"></div>
 <div class="test-blog-filter"></div>
-
+<div class="test-search-box"></div>
 
 
 {{#each model as |resource|}}
-  <div class="test-resource-card" title={{resource.title}}>
-    <span class="test-resource-card__type">{{resource.type}}</span>
+  <div class="test-resource-card test-resource-card__title" href={{resource.url}} title={{resource.title}}>
+    <span class="test-resource-card__type" type={{resource.type}}></span>
+    <img src="{{resource.imageUrl}}">
+    <span class="test-resource-card__preview">{{resource.previewText}}</span>
+    <span class="test-resource-card__publishDate">{{resource.publishDate}}</span>
   </div>
 {{/each}}
