@@ -1,0 +1,18 @@
+div .test-resource-card {
+  width: 230px;
+  height: 300px;
+  display: inline-block;
+  margin: 20px 30px 20px 30px;
+  border: 1px solid;
+}
+
+div .test-resource-card img {
+  width: 230px;
+  height: 120px;
+  padding-bottom: 20px;
+}
+
+div .filters {
+  padding: 10px 0px 30px 0px;
+  display: block;
+}
