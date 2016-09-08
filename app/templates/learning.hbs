@@ -1,0 +1,11 @@
+{{#each filteredMedia as |resource|}}
+  <div class="test-resource-card test-resource-card__title" href={{resource.url}} title={{resource.title}}>
+    <img src="{{resource.imageUrl}}">
+    <br>
+    <span class="test-resource-card__publishDate">{{resource.publishDate}}</span>
+    <br>
+    <span class="test-resource-card__preview">{{resource.previewText}}</span>
+    <br>
+    <span class="test-resource-card__type">{{resource.type}}</span>
+  </div>
+{{/each}}

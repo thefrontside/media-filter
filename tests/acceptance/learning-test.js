@@ -40,7 +40,7 @@ describe('Acceptance: MediaFilter', function() {
     it("displays the filters", function() {
       expect($('.test-all-filter')).to.have.length(1);
       expect($('.test-podcast-filter')).to.have.length(1);
-      expect($('.test-talks-filter')).to.have.length(1);
+      expect($('.test-talk-filter')).to.have.length(1);
       expect($('.test-blog-filter')).to.have.length(1);
     });
 
@@ -75,9 +75,15 @@ describe('Acceptance: MediaFilter', function() {
       });
     });
 
-    describe.skip("clicking on the podcast filter", function() {
-      it("only shows the media cards of that select type");
-      it("marks the podcast filter as active");
+    describe("clicking on the podcast filter", function() {
+      let card = '.test-resource-card';
+
+      it("only shows the media cards of that select type", function() {
+        expect($(`${card}`)).to.have.attr('type', 'podcast');
+      });
+      it("marks the podcast filter as active", function() {
+        expect($(`${card}`)).to.have.class('active');
+      });
     });
 
     describe.skip("clicking on search", function() {

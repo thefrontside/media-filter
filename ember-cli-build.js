@@ -4,7 +4,9 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
+    'ember-bootstrap': {
+      'importBootstrapTheme': true
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -21,8 +23,8 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
 
-    // Only import in test mode and place in test-supoprt.js
-    app.import(app.bowerDirectory + '/chai-jquery/chai-jquery.js', { type: 'test' });
+  // Only import in test mode and place in test-supoprt.js
+  app.import(app.bowerDirectory + '/chai-jquery/chai-jquery.js', { type: 'test' });
 
   return app.toTree();
 };
