@@ -6,8 +6,8 @@ import {
 } from 'ember-mocha';
 
 describeModule(
-  'route:media-type',
-  'MediaTypeRoute',
+  'route:learning',
+  'LearningRoute',
   {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']

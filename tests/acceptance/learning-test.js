@@ -40,7 +40,7 @@ describe('Acceptance: MediaFilter', function() {
     it("displays the filters", function() {
       expect($('.test-all-filter')).to.have.length(1);
       expect($('.test-podcast-filter')).to.have.length(1);
-      expect($('.test-talks-filter')).to.have.length(1);
+      expect($('.test-talk-filter')).to.have.length(1);
       expect($('.test-blog-filter')).to.have.length(1);
     });
 

@@ -6,7 +6,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('media-type');
+  this.route('learning');
 });
 
 export default Router;

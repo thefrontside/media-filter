@@ -2,14 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   queryParams: {
-   blog: {
+   type: {
       replace: true
-   },
-   podcast: {
-      replace: true
-    },
-   talks: {
-      replace: true
-    }
+   }
   }
 });
