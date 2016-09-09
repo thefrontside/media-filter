@@ -75,8 +75,12 @@ describe('Acceptance: MediaFilter', function() {
       });
     });
 
-    describe("clicking on the podcast filter", function() {
+    describe.skip("clicking on the podcast filter", function() {
       let card = '.test-resource-card';
+
+      beforeEach(function() {
+        click('.test-podcast-filter');
+      });
 
       it("only shows the media cards of that select type", function() {
         expect($(`${card}`)).to.have.attr('type', 'podcast');
