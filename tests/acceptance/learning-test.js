@@ -1,4 +1,5 @@
 /* jshint expr:true */
+import Ember from 'ember';
 import {
   describe,
   it,
@@ -22,7 +23,7 @@ describe('Acceptance: MediaFilter', function() {
 
   describe("visiting the page", function() {
     beforeEach(function() {
-      visit('/');
+      visit('/learning');
     });
 
     it("displays the most recent learning resources", function() {
@@ -53,36 +54,56 @@ describe('Acceptance: MediaFilter', function() {
     });
 
     describe("the appearance of one of the cards", function() {
-      let card = '.test-resource-card';
+      let firstCard;
+
+      beforeEach(function() {
+        firstCard = Ember.$('.test-resource-card').first();
+      });
 
       it("has an image", function() {
-        expect($(`${card} img`)).to.have.attr('src');
+        expect(firstCard.find('img')).to.have.attr('src');
       });
       it("has a title", function() {
-        expect($(`${card}__title`)).to.have.attr('title', 'A Sprinkling of Ember');
+        expect(firstCard).to.have.attr('title', 'A Sprinkling of Ember');
       });
       it("has a category", function() {
-        expect($(`${card}__type`)).to.have.attr('type', 'blog');
+        expect(firstCard.find('.test-resource-card__type')).to.have.text('blog');
       });
       it("has preview text", function() {
-        expect($(`${card}__preview:eq(0)`)).to.have.text('How I destroyed my laptop with a single NPM install');
+        expect(firstCard.find('.test-resource-card__preview')).to.have.text('How I destroyed my laptop with a single NPM install');
       });
       it("has a publication date", function() {
-        expect($(`${card}__publishDate:eq(0)`)).to.have.text('UTC12-25-2016:10:10:10:Z01');
+        expect(firstCard.find('.test-resource-card__publishDate')).to.have.text('UTC12-25-2016:10:10:10:Z01');
       });
       it("is a link to the resource itself", function() {
-        expect($(`${card}`)).to.have.attr('href', 'http://frontside.io/blog/2016-melty-cpu.html');
+        expect(firstCard).to.have.attr('href', 'http://frontside.io/blog/2016-melty-cpu.html');
       });
     });
 
     describe("clicking on the podcast filter", function() {
-      let card = '.test-resource-card';
+      let podcastButton = '.test-podcast-filter a';
+      let displayedCards;
+
+      beforeEach(function() {
+        Ember.$(podcastButton).click().trigger('click');
+        displayedCards = Ember.$('.test-resource-card');
+        console.log(displayedCards);
+      });
+
+      it('updates the query param', function() {
+        expect(currentURL()).to.be.equal('/learning?type=podcast');
+      });
 
       it("only shows the media cards of that select type", function() {
-        expect($(`${card}`)).to.have.attr('type', 'podcast');
+        let podcastCards = displayedCards.filter((idx, card) => {
+          return $(card).find('.test-resource-card__type').text() === 'podcast';
+        });
+
+        expect(podcastCards).to.have.length(2);
       });
+
       it("marks the podcast filter as active", function() {
-        expect($(`${card}`)).to.have.class('active');
+        expect(Ember.$(podcastButton)).to.have.class('active');
       });
     });
 
