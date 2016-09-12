@@ -9,3 +9,14 @@
     <span class="test-resource-card__type">{{resource.type}}</span>
   </div>
 {{/each}}
+
+
+{{#search-filter
+   filter=(action 'filterByQuery')
+   as |resources|}}
+  <ul class="">
+    {{#each resources as |searchQuery|}}
+      <li>{{card result=searchQuery}}</li>
+    {{/each}}
+  </ul>
+{{/search-filter}}
