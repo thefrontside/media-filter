@@ -14,12 +14,15 @@ export default Ember.Controller.extend({
       return item.type === chosenType;
     });
   }),
+
   actions: {
-    filterByQuery(param) {
-      if (param !== '') {
-        return this.get('cards');
+    filterByQuery(query) {
+      if (query === '') {
+        return this.get('filteredMedia');
       } else {
-        return this.get('cards').prop('fullText');
+        return this.get('filteredMedia').filter(resource => {
+          return resource.fullText.match(query);
+        });
       }
     }
   }
