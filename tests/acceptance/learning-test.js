@@ -95,7 +95,7 @@ describe('Acceptance: MediaFilter', function() {
       });
 
       it("only shows the media cards of that select type", function() {
-        let podcastCards = displayedCards.filter((idx, card) => {
+        let podcastCards = filter.idx((displayedCards, card) => {
           return $(card).find('.test-resource-card__type').text() === 'podcast';
         });
 
@@ -108,13 +108,29 @@ describe('Acceptance: MediaFilter', function() {
     });
 
     describe.skip("clicking on search", function() {
-      it("focuses on the search box");
-      describe("typing a query that has results", function() {
-        it("renders the media cards that are relevant to that query");
+      let searchBox = $('.test-search-box');
+
+      beforeEach(function() {
+        Ember.$(searchBox).click().trigger('click');
       });
-      describe.skip("typing a query that has no results", function() {
-        it("will do something eventually");
+
+      it("renders the search text area", function() {
+        expect(searchBox).to.have.length(1);
       });
+
+      it("lets user type a query in the text area", function() {
+        fillIn(searchBox, 'some search query');
+      });
+
+      // it("render results based on the users search", function() {
+
+      // });
     });
+  });
+  describe("typing a query that has results", function() {
+    it("renders the media cards that are relevant to that query");
+  });
+  describe.skip("typing a query that has no results", function() {
+    it("will do something eventually");
   });
 });
