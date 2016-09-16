@@ -49,7 +49,10 @@ describeComponent(
       ];
 
       this.set('cardObj', cards);
-      this.render(hbs `{{#search-filter card=cardObj}}`);
+      this.render(hbs `
+        {{#search-filter card=cardObj}}
+        {{/search-filter}}
+        `);
 
 
       test('should initially load all listings', function (assert) {
@@ -62,11 +65,12 @@ describeComponent(
         });
 
 
-        this.render(hbs`                {{#search-filter
-                  filter=(action 'filterByQuery')
-                  as |resources|}}
+        this.render(hbs`
+          {{#search-filter
+            filter=(action 'filterByQuery')
+            as |resources|}}
 
-                  {{/search-filter}}
+          {{/search-filter}}
         `);
 
         this.$('.search-filter input').val('Rob').keyup();
