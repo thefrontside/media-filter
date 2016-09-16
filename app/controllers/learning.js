@@ -13,5 +13,14 @@ export default Ember.Controller.extend({
     } return mediaList.filter( item => {
       return item.type === chosenType;
     });
-  })
+  }),
+  actions: {
+    filterByQuery(param) {
+      if (param !== '') {
+        return this.get('cards');
+      } else {
+        return this.get('cards').prop('fullText');
+      }
+    }
+  }
 });

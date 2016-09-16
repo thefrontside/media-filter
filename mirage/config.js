@@ -40,8 +40,8 @@ export default function configure() {
         publishDate: "UTC12-25-2016:10:10:10:Z01",
         tags: ["disasters", "comedy", "node.js"],
         imageUrl: image(),
-        fullText: "The other day, when blah blah...",
-        previewText: "How I destroyed my laptop with a single NPM install"
+        fullText: "How I destroyed my laptop with a single NPM install",
+        previewText: "The other day, when blah blah.."
       },
       {
         id: "1dgaf10102",
@@ -52,7 +52,7 @@ export default function configure() {
         publishDate: "UTC12-25-2016:10:10:10:Z01",
         tags: ["podcasts", "ember"],
         imageUrl: image(),
-        fullText: "i am a transcript",
+        fullText: "A spirit quest of deep Ember proportions",
         previewText: "Charles and Stephanie discuss how to kick ass at Ember"
       },
       {
@@ -64,7 +64,7 @@ export default function configure() {
         publishDate: "UTC12-25-2016:10:10:10:Z01",
         tags: ["handlebars", "composable helpers", "ember"],
         imageUrl: image(),
-        fullText: "",
+        fullText: "A discussion on the intricacies of composable helpers",
         previewText: "Recorded at EmberATX, Alex talks about..."
       },
       {
@@ -76,8 +76,8 @@ export default function configure() {
         publishDate: "UTC12-25-2016:10:10:10:Z01",
         tags: ["disasters", "comedy", "node.js"],
         imageUrl: image(),
-        fullText: "The other day, when blah blah...",
-        previewText: "How I destroyd my laptop with a single NPM install"
+        fullText: "How I destroyed my laptop with a single NPM install",
+        previewText: "The other day, when blah blah.."
       },
       {
         id: "1dgaf10102",
@@ -88,7 +88,7 @@ export default function configure() {
         publishDate: "UTC12-25-2016:10:10:10:Z01",
         tags: ["podcasts", "ember"],
         imageUrl: image(),
-        fullText: "i am a transcript",
+        fullText: "A spirit quest of deep Ember proportions",
         previewText: "Charles and Stephanie discuss how to kick ass at Ember"
       },
       {
@@ -100,7 +100,7 @@ export default function configure() {
         publishDate: "UTC12-25-2016:10:10:10:Z01",
         tags: ["handlebars", "composable helpers", "ember"],
         imageUrl: image(),
-        fullText: "",
+        fullText: "A discussion on the intricacies of composable helpers",
         previewText: "Recorded at EmberATX, Alex talks about..."
       }
     ];

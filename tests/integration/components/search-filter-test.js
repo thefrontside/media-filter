@@ -5,6 +5,7 @@ import {
   it
 } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
+import Ember from 'ember';
 
 describeComponent(
   'search-filter',
@@ -13,39 +14,67 @@ describeComponent(
     integration: true
   },
   function() {
-    it('renders', function() {
+    it('renders the cards', function() {
+      let cards = [
+        {
+          authors: ["Robert DeLuca"],
+          fullText: "How I destroyed my laptop with a single NPM install"
+        },
+        {
+          authors: ["Stephanie Riera", "Charles Lowell"],
+          fullText: "A spirit quest of deep Ember proportions"
+        },
+        {
+          authors: ["Alex Ford"],
+          fullText: "A discussion on the intricacies of composable helpers"
+        },
+        {
+          authors: ["Robert DeLuca"],
+          fullText: "How I destroyed my laptop with a single NPM install"
+        },
+        {
+          authors: ["Stephanie Riera", "Charles Lowell"],
+          fullText: "A spirit quest of deep Ember proportions"
+        },
+        {
+          authors: ["Alex Ford"],
+          fullText: "A discussion on the intricacies of composable helpers"
+        }
+      ];
+      let filteredCards = [
+        {
+         authors: ["Robert DeLuca"],
+          fullText: "How I destroyed my laptop with a single NPM install"
+        }
+      ];
 
-      const CARDS = this.get('filteredMedia');
+      this.set('cardObj', cards);
+      this.render(hbs `{{#search-filter card=cardObj}}`);
+
 
       test('should initially load all listings', function (assert) {
         this.on('filterByQuery', (val) => {
           if (val === '') {
-            return Ember.RSVP.resolve(CARDS);
+            return Ember.RSVP.resolve(cards);
           } else {
-            return Ember.RSVP.resolve(FILTERED_CARDS);
+            return Ember.RSVP.resolve(filteredCards);
           }
         });
 
 
-        this.render(hbs`
-        {{#search-filter
-          filter=(action 'filterByQuery')
-          as |resources|}}
-          <ul class="">
-          {{#each resources as |searchQuery|}}
-          <li>{{card result=searchQuery}}</li>
-          {{/each}}
-        </ul>
-          {{/search-filter}}
-`);
+        this.render(hbs`                {{#search-filter
+                  filter=(action 'filterByQuery')
+                  as |resources|}}
 
-        //Will I hardcode a users query?
-        this.$('.search-filter input').val('San').keyup();
+                  {{/search-filter}}
+        `);
 
-        // return wait().then(() => {
-        //   assert.equal(this.$('.city').length, 6);
-        //   assert.equal(this.$('.city').first().text().trim(), 'San Francisco');
-        // });
+        this.$('.search-filter input').val('Rob').keyup();
 
+        return wait().then(() => {
+          assert.equal(this.$('.text-search-box').length, 3);
+          assert.equal(this.$('.text-search-box').first().text().trim(), 'Robert DeLuca');
+        });
       });
     });
+  });
