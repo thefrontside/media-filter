@@ -6,16 +6,17 @@ import {
 } from 'ember-mocha';
 
 describeModule(
-  'route:learning',
-  'LearningRoute',
+  'controller:application',
+  'ApplicationController',
   {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
   },
   function() {
+    // Replace this with your real tests.
     it('exists', function() {
-      let route = this.subject();
-      expect(route).to.be.ok;
+      let controller = this.subject();
+      expect(controller).to.be.ok;
     });
   }
 );

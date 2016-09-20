@@ -6,7 +6,9 @@ export default Ember.Route.extend({
     return Ember.$.getJSON('resources');
   },
 
-  afterModel() {
-    this.transitionTo('learning');
+  queryParams: {
+    type: {
+      replace: true
+    }
   }
 });

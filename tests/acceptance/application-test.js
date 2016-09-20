@@ -23,7 +23,7 @@ describe('Acceptance: MediaFilter', function() {
 
   describe("visiting the page", function() {
     beforeEach(function() {
-      visit('/learning');
+      visit('/');
     });
 
     it("displays the most recent learning resources", function() {
@@ -70,7 +70,7 @@ describe('Acceptance: MediaFilter', function() {
         expect(firstCard.find('.test-resource-card__type')).to.have.text('blog');
       });
       it("has preview text", function() {
-        expect(firstCard.find('.test-resource-card__preview')).to.have.text('How I destroyed my laptop with a single NPM install');
+        expect(firstCard.find('.test-resource-card__full')).to.have.text('How I destroyed my laptop with a single NPM install');
       });
       it("has a publication date", function() {
         expect(firstCard.find('.test-resource-card__publishDate')).to.have.text('UTC12-25-2016:10:10:10:Z01');
@@ -91,11 +91,11 @@ describe('Acceptance: MediaFilter', function() {
       });
 
       it('updates the query param', function() {
-        expect(currentURL()).to.be.equal('/learning?type=podcast');
+        expect(currentURL()).to.be.equal('/?type=podcast');
       });
 
       it("only shows the media cards of that select type", function() {
-        let podcastCards = filter.idx((displayedCards, card) => {
+        let podcastCards = displayedCards.filter((idx, card) => {
           return $(card).find('.test-resource-card__type').text() === 'podcast';
         });
 
