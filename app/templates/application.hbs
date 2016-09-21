@@ -1,10 +1,22 @@
 <div class="filters col-md-4 col-md-offset-4">
-<button class="test-all-filter active">{{#link-to "learning" (query-params type=null)}}All{{/link-to}}</button>
-<button class="test-podcast-filter">{{#link-to "learning" (query-params type="podcast")}}Podcast{{/link-to}}</button>
-<button class="test-talk-filter">{{#link-to "learning" (query-params type="talk")}}Talks{{/link-to}}</button>
-<button class="test-blog-filter">{{#link-to "learning" (query-params type="blog")}}Blog{{/link-to}}</button>
+<button class="test-all-filter active">{{#link-to "application" (query-params type=null)}}All{{/link-to}}</button>
+<button class="test-podcast-filter">{{#link-to "application" (query-params type="podcast")}}Podcast{{/link-to}}</button>
+<button class="test-talk-filter">{{#link-to "application" (query-params type="talk")}}Talks{{/link-to}}</button>
+<button class="test-blog-filter">{{#link-to "application" (query-params type="blog")}}Blog{{/link-to}}</button>
 </div>
 
 <div class="col-md-10 col-md-offset-2">
-  {{outlet}}
+  {{#new-search filter=(action 'filterByQuery') as |resources|}}
+    {{#each resources as |resource|}}
+      <div class="test-resource-card test-resource-card__title" href={{resource.url}} title={{resource.title}}>
+        <img src="{{resource.imageUrl}}">
+        <br>
+        <span class="test-resource-card__publishDate">{{resource.publishDate}}</span>
+        <br>
+        <span class="test-resource-card__full">{{resource.fullText}}</span>
+        <br>
+        <span class="test-resource-card__type">{{resource.type}}</span>
+      </div>
+    {{/each}}
+  {{/new-search}}
 </div>
