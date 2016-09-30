@@ -107,30 +107,74 @@ describe('Acceptance: MediaFilter', function() {
       });
     });
 
-    describe.skip("clicking on search", function() {
-      let searchBox = $('.test-search-box');
+    describe("viewing the search box", function() {
+      let searchBox;
 
       beforeEach(function() {
-        Ember.$(searchBox).click().trigger('click');
+        searchBox = Ember.$('.test-search-box');
       });
 
       it("renders the search text area", function() {
         expect(searchBox).to.have.length(1);
       });
+    });
 
-      it("lets user type a query in the text area", function() {
-        fillIn(searchBox, 'some search query');
+    describe("typing a query that has results", function() {
+      let searchBox;
+      let card;
+
+      beforeEach(function() {
+        this.searchBox = Ember.$('.test-search-box');
+        this.card = $('.test-resource-card');
+        this.searchBox.val('laptop');
       });
 
-      // it("render results based on the users search", function() {
+      it("lets user type a query in the search", function() {
+        expect(this.searchBox).to.have.value('laptop');
+      });
 
-      // });
+      it("renders the media cards that are relevant to that query", function() {
+        expect(this.card).to.have.length(2);
+      });
     });
-  });
-  describe("typing a query that has results", function() {
-    it("renders the media cards that are relevant to that query");
-  });
-  describe.skip("typing a query that has no results", function() {
-    it("will do something eventually");
+
+    describe("typing a query that has no results", function() {
+      let searchBox;
+      let card;
+
+      beforeEach(function() {
+        this.searchBox = Ember.$('.test-search-box');
+        this.card = $('.test-resource-card');
+        this.searchBox.val('velociraptor');
+      });
+
+      it("will not render any cards", function() {
+        expect(this.searchBox).to.have.value('velociraptor');
+        expect(this.card).to.have.length(0);
+      });
+    });
+
+    describe("clicking on a filter and typing a query", function() {
+      let searchBox;
+      let card;
+      let podcastButton;
+      let displayedCards;
+
+      beforeEach(function() {
+        this.searchBox = Ember.$('.test-search-box');
+        this.card = $('.test-resource-card');
+        this.podcastButton = $('.test-podcast-filter a');
+        this.podcastButton.click();
+        let podcastCards = displayedCards.filter((idx, card) => {
+          return $(card).find('.test-resource-card__type').text() === 'podcast';
+        });
+
+        it("will render podcast cards with Ember query", function() {
+          Ember.$(this.searchBox).click();
+          expect(this.searchBox).to.have.value('Ember');
+          expect(this.podcastCards).to.have.length(2);
+        });
+      });
+    });
   });
 });
