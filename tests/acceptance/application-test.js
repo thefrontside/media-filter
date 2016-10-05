@@ -87,7 +87,6 @@ describe('Acceptance: MediaFilter', function() {
       beforeEach(function() {
         Ember.$(podcastButton).click().trigger('click');
         displayedCards = Ember.$('.test-resource-card');
-        console.log(displayedCards);
       });
 
       it('updates the query param', function() {
@@ -120,15 +119,10 @@ describe('Acceptance: MediaFilter', function() {
     });
 
     describe("typing a query that has results", function() {
-      // Simply declare searchBox since we'll assign it in the beforeEach
       let searchBox;
-      // Set up a constant for the card selector, since we'll use it to look up
-      // the cards once we've actually typed in a query
       let cardsList = '.test-resource-card';
 
       beforeEach(function() {
-        // Find the searchbox in the DOM, fill in a query, and trigger the keyup
-        // event to force the app to filter
         searchBox = Ember.$('.test-search-box');
         searchBox.val('laptop');
         searchBox.trigger('keyup');
@@ -139,49 +133,45 @@ describe('Acceptance: MediaFilter', function() {
       });
 
       it("renders the media cards that are relevant to that query", function() {
-        // Find all the cards on the page. This should be the filtered results
-        // since we typed in a search query in the `beforeEach` for this set of tests
         let filteredCards = Ember.$(cardsList);
         expect(filteredCards.length).to.equal(2);
       });
     });
 
-    describe.skip("typing a query that has no results", function() {
+    describe("typing a query that has no results", function() {
       let searchBox;
-      let card;
-      let displayedCards;
+      let cardsList = '.test-resource-card';
 
       beforeEach(function() {
-        this.searchBox = Ember.$('.test-search-box');
-        this.card = $('.test-resource-card');
-        this.searchBox.val('velociraptor');
+        searchBox = Ember.$('.test-search-box');
+        searchBox.val('velociraptor');
+        searchBox.trigger('keyup');
       });
 
       it("will not render any cards", function() {
-        expect(this.searchBox).to.have.value('velociraptor');
-        expect(this.displayedCards.length).to.have.equal(0);
+        let filteredCards = Ember.$(cardsList);
+        expect(searchBox).to.have.value('velociraptor');
+        expect(filteredCards.length).to.have.equal(0);
       });
     });
 
     describe.skip("clicking on a filter and typing a query", function() {
       let searchBox;
-      let card;
-      let podcastButton;
-      let displayedCards;
+      let cardsList = '.test-resource-card';
+      let podcastButton = $('.test-podcast-filter a');
+      let podcastCards;
 
       beforeEach(function() {
-        this.searchBox = Ember.$('.test-search-box');
-        this.card = $('.test-resource-card');
-        this.podcastButton = $('.test-podcast-filter a');
-        this.podcastButton.click();
-        let podcastCards = displayedCards.filter((idx, card) => {
+        searchBox = Ember.$('.test-search-box');
+        podcastButton.click();
+        podcastCards = cardsList.filter((idx, card) => {
           return $(card).find('.test-resource-card__type').text() === 'podcast';
         });
 
         it("will render podcast cards with Ember query", function() {
-          Ember.$(this.searchBox).click();
-          expect(this.searchBox).to.have.value('Ember');
-          expect(this.podcastCards).to.have.length(2);
+          let filteredCards = Ember.$(cardsList);
+          expect(searchBox).to.have.value('Ember');
+          expect(filteredCards.length).to.have.length(2);
         });
       });
     });
