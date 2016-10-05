@@ -120,27 +120,29 @@ describe('Acceptance: MediaFilter', function() {
     });
 
     describe("typing a query that has results", function() {
+      // Simply declare searchBox since we'll assign it in the beforeEach
       let searchBox;
-      let card;
-      let filteredCards;
+      // Set up a constant for the card selector, since we'll use it to look up
+      // the cards once we've actually typed in a query
+      let cardsList = '.test-resource-card';
 
       beforeEach(function() {
-        this.searchBox = Ember.$('.test-search-box');
-        this.searchBox.val('laptop');
-        this.searchBox.trigger('keyup');
-        // fillIn('.test-search-box', 'laptop');
-        this.card = $('.test-resource-card');
-        this.displayedCards = $(this.card).filter(function(index, card) {
-          return $(card).css('display') != 'none';
-        });
+        // Find the searchbox in the DOM, fill in a query, and trigger the keyup
+        // event to force the app to filter
+        searchBox = Ember.$('.test-search-box');
+        searchBox.val('laptop');
+        searchBox.trigger('keyup');
       });
 
       it("lets user type a query in the search", function() {
-        expect(this.searchBox).to.have.value('laptop');
+        expect(searchBox).to.have.value('laptop');
       });
 
       it("renders the media cards that are relevant to that query", function() {
-        expect(this.card.length).to.equal(2);
+        // Find all the cards on the page. This should be the filtered results
+        // since we typed in a search query in the `beforeEach` for this set of tests
+        let filteredCards = Ember.$(cardsList);
+        expect(filteredCards.length).to.equal(2);
       });
     });
 
