@@ -3,17 +3,16 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   query: '',
 
-  init() {
-    this._super(...arguments);
-    let initialResults = this.get('filter')('');
-    this.set('results', initialResults);
-  },
+  results: Ember.computed('filter', 'dataset', 'query', function() {
+    let filter = this.get('filter');
+    let query = this.get('query');
+    let dataset = this.get('dataset');
+    return filter(dataset, query);
+  }),
 
   actions: {
-    handleFilterEntry() {
-      let query = this.get('query');
-      let results = this.get('filter')(query);
-      this.set('results', results);
+    handleFilterEntry(query) {
+      this.set('query', query);
     }
   }
 });

@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
   filteredMedia: Ember.computed('type', 'model', function() {
     var chosenType = this.get('type');
     var mediaList = this.get('model');
+    console.log('filteredmediahere');
 
     if (chosenType == null) {
       return mediaList;
@@ -16,12 +17,25 @@ export default Ember.Controller.extend({
     });
   }),
 
+  logType: Ember.observer('type', function() {
+    console.log('type changed', this.get('type'));
+
+  }),
+
+  logModel: Ember.observer('model', function() {
+    console.log('model changed', this.get('model'));
+  }),
+
+  logFilteredMedia: Ember.observer('filteredMedia', function() {
+    console.log('FM changed', this.get('filteredMedia'));
+  }),
+
   actions: {
-    filterByQuery(query) {
+    filterByQuery(dataset, query) {
       if (query === '') {
-        return this.get('filteredMedia');
+        return dataset;
       } else {
-        return this.get('filteredMedia').filter(resource => {
+        return dataset.filter(resource => {
           return resource.fullText.match(query);
         });
       }

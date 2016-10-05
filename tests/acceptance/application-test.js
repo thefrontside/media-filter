@@ -1,4 +1,11 @@
 /* jshint expr:true */
+
+
+
+// loading the page
+// apply a filter w/o reloading the page
+
+
 import Ember from 'ember';
 import {
   describe,
@@ -45,10 +52,6 @@ describe('Acceptance: MediaFilter', function() {
       expect($('.test-blog-filter')).to.have.length(1);
     });
 
-    it("marks the all filter as active", function() {
-      expect($('.test-all-filter')).to.have.class('active');
-    });
-
     it("displays the search box", function() {
       expect($('.test-search-box')).to.have.length(1);
     });
@@ -82,11 +85,10 @@ describe('Acceptance: MediaFilter', function() {
 
     describe("clicking on the podcast filter", function() {
       let podcastButton = '.test-podcast-filter a';
-      let displayedCards;
+      let displayedCards = '.test-resource-card';
 
       beforeEach(function() {
         Ember.$(podcastButton).click().trigger('click');
-        displayedCards = Ember.$('.test-resource-card');
       });
 
       it('updates the query param', function() {
@@ -94,15 +96,11 @@ describe('Acceptance: MediaFilter', function() {
       });
 
       it("only shows the media cards of that select type", function() {
-        let podcastCards = displayedCards.filter((idx, card) => {
-          return $(card).find('.test-resource-card__type').text() === 'podcast';
+        let podcastCards = $(displayedCards).filter((idx, card) => {
+          return Ember.$(card).find('.test-resource-card__type').text() === 'podcast';
         });
 
         expect(podcastCards).to.have.length(2);
-      });
-
-      it("marks the podcast filter as active", function() {
-        expect(Ember.$(podcastButton)).to.have.class('active');
       });
     });
 
@@ -155,25 +153,27 @@ describe('Acceptance: MediaFilter', function() {
       });
     });
 
-    describe.skip("clicking on a filter and typing a query", function() {
-      let searchBox;
-      let cardsList = '.test-resource-card';
-      let podcastButton = $('.test-podcast-filter a');
-      let podcastCards;
+    // describe.skip("clicking on the talk filter and typing a query", function() {
+    //   let searchBox;
+    //   let cardsList = '.test-resource-card';
+    //   let talkButton = $('.test-podcast-talk a');
+    //   let talkCards;
 
-      beforeEach(function() {
-        searchBox = Ember.$('.test-search-box');
-        podcastButton.click();
-        podcastCards = cardsList.filter((idx, card) => {
-          return $(card).find('.test-resource-card__type').text() === 'podcast';
-        });
+    //   beforeEach(function() {
+    //     searchBox = Ember.$('.test-search-box');
+    //     talkButton.click();
+    //     talkCards = cardsList.filter((idx, card) => {
+    //       return $(card).find('.test-resource-card__type').text() === 'talk';
+    //     });
+    //     searchBox.val('intricacies');
+    //     searchBox.trigger('keyup');
+    //   });
 
-        it("will render podcast cards with Ember query", function() {
-          let filteredCards = Ember.$(cardsList);
-          expect(searchBox).to.have.value('Ember');
-          expect(filteredCards.length).to.have.length(2);
-        });
-      });
-    });
+    //   it("will render podcast cards with Ember query", function() {
+    //     let talkCards = Ember.$(cardsList);
+    //     expect(searchBox).to.have.value('intricacies');
+    //     expect(talkCards.length).to.have.length(2);
+    //   });
+    // });
   });
 });
