@@ -33,7 +33,7 @@ describe('Acceptance: MediaFilter', function() {
       visit('/');
     });
 
-    it("displays the most recent learning resources", function() {
+    it("displays the 6 most recent learning resources", function() {
       let card = $('.test-resource-card');
 
       expect(card).to.have.length(6);
@@ -67,19 +67,19 @@ describe('Acceptance: MediaFilter', function() {
         expect(firstCard.find('img')).to.have.attr('src');
       });
       it("has a title", function() {
-        expect(firstCard).to.have.attr('title', 'A Sprinkling of Ember');
+        expect(firstCard).to.have.attr('title', 'Dogs can code');
       });
       it("has a category", function() {
-        expect(firstCard.find('.test-resource-card__type')).to.have.text('blog');
+        expect(firstCard.find('.test-resource-card__type')).to.have.text('talk');
       });
       it("has preview text", function() {
-        expect(firstCard.find('.test-resource-card__full')).to.have.text('How I destroyed my laptop with a single NPM install');
+        expect(firstCard.find('.test-resource-card__full')).to.have.text('Rea creates PRs between 3 and 6 am');
       });
       it("has a publication date", function() {
-        expect(firstCard.find('.test-resource-card__publishDate')).to.have.text('UTC12-25-2016:10:10:10:Z01');
+        expect(firstCard.find('.test-resource-card__publishDate')).to.have.text('UTC12-25-2016:10:15:10:Z01');
       });
       it("is a link to the resource itself", function() {
-        expect(firstCard).to.have.attr('href', 'http://frontside.io/blog/2016-melty-cpu.html');
+        expect(firstCard).to.have.attr('href', 'http://youtube.com/x4fbl4820xbd');
       });
     });
 
@@ -100,7 +100,7 @@ describe('Acceptance: MediaFilter', function() {
           return Ember.$(card).find('.test-resource-card__type').text() === 'podcast';
         });
 
-        expect(podcastCards).to.have.length(2);
+        expect(podcastCards).to.have.length(4);
       });
     });
 
@@ -153,27 +153,27 @@ describe('Acceptance: MediaFilter', function() {
       });
     });
 
-    // describe.skip("clicking on the talk filter and typing a query", function() {
-    //   let searchBox;
-    //   let cardsList = '.test-resource-card';
-    //   let talkButton = $('.test-podcast-talk a');
-    //   let talkCards;
+    describe("clicking on the talk filter and typing a query", function() {
+      let searchBox;
+      let cardsList = '.test-resource-card';
+      let talkButton = $('.test-podcast-talk a');
+      let talkCards;
 
-    //   beforeEach(function() {
-    //     searchBox = Ember.$('.test-search-box');
-    //     talkButton.click();
-    //     talkCards = cardsList.filter((idx, card) => {
-    //       return $(card).find('.test-resource-card__type').text() === 'talk';
-    //     });
-    //     searchBox.val('intricacies');
-    //     searchBox.trigger('keyup');
-    //   });
+      beforeEach(function() {
+        searchBox = Ember.$('.test-search-box');
+        talkButton.click();
+        talkCards = $(cardsList).filter((idx, card) => {
+          return $(card).find('.test-resource-card__type').text() === 'talk';
+        });
+        searchBox.val('intricacies');
+        searchBox.trigger('keyup');
+      });
 
-    //   it("will render podcast cards with Ember query", function() {
-    //     let talkCards = Ember.$(cardsList);
-    //     expect(searchBox).to.have.value('intricacies');
-    //     expect(talkCards.length).to.have.length(2);
-    //   });
-    // });
+      it("will render podcast cards with Ember query", function() {
+        talkCards = Ember.$(cardsList);
+        expect(searchBox).to.have.value('intricacies');
+        expect(talkCards.length).to.equal(1);
+      });
+    });
   });
 });
