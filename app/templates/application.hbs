@@ -8,7 +8,7 @@
 
 <div class="col-md-10 col-md-offset-2">
   {{#new-search filter=(action 'filterByQuery') dataset=filteredMedia as |resources|}}
-    {{#each resources as |resource|}}
+    {{#each (take 6 resources) as |resource|}}
       <div class="test-resource-card test-resource-card__title" href={{resource.url}} title={{resource.title}}>
         <img src="{{resource.imageUrl}}">
         <br>
