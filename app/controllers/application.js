@@ -4,7 +4,6 @@ export default Ember.Controller.extend({
   queryParams: ['type'],
   type: null,
 
-
   filteredMedia: Ember.computed('type', 'model', function() {
     var chosenType = this.get('type');
     var mediaList = this.get('model');
@@ -16,14 +15,30 @@ export default Ember.Controller.extend({
     });
   }),
 
+  //TODO: Need a computed property to filter by type on filteredMedia
+
   actions: {
-    filterByQuery(dataset, query) {
+    filterByQuery( query) {
+      let dataset = this.get('filteredMedia');
       if (query === '') {
-        return dataset;
+        this.set('filteredMedia', dataset);
       } else {
-        return dataset.filter(resource => {
+        let filteredDataset = dataset.filter((resource) => {
           return resource.fullText.match(query);
         });
+        this.set('filteredMedia', filteredDataset);
+      }
+    },
+
+    filterByType(type) {
+      let mediaList = this.get('model');
+      if (type === 'all') {
+        this.set('filteredMedia', mediaList);
+      } else {
+        let filteredModel = mediaList.filter( item => {
+          return item.type === type;
+        });
+        this.set('filteredMedia', filteredModel);
       }
     }
   }

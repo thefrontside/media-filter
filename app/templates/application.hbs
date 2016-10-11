@@ -1,24 +1,22 @@
 <div class="filters col-md-4 col-md-offset-4">
-  <button class="test-all-filter">{{#link-to "application" (query-params type=null)}}All{{/link-to}}</button>
-  {{log type}}
-<button class="test-podcast-filter">{{#link-to "application" (query-params type="podcast")}}Podcast{{/link-to}}</button>
-<button class="test-talk-filter">{{#link-to "application" (query-params type="talk")}}Talks{{/link-to}}</button>
-<button class="test-blog-filter">{{#link-to "application" (query-params type="blog")}}Blog{{/link-to}}</button>
+  <button class="test-all-filter"{{action 'filterByType' 'all'}}>All</button>
+  <button class="test-podcast-filter"{{action 'filterByType' 'podcast'}}>Podcast</button>
+  <button class="test-talk-filter"{{action 'filterByType' 'talk'}}>Talks</button>
+  <button class="test-blog-filter"{{action 'filterByType' 'blog'}}>Blog</button>
 </div>
 
 <div class="col-md-10 col-md-offset-2">
-  {{#new-search filter=(action 'filterByQuery') dataset=filteredMedia as |resources|}}
-    {{#each (take 6 resources) as |resource|}}
-      <div class="test-resource-card test-resource-card__title" href={{resource.url}} title={{resource.title}}>
-        <img src="{{resource.imageUrl}}">
-        <br>
-        <span class="test-resource-card__publishDate">{{resource.publishDate}}</span>
-        <br>
-        <span class="test-resource-card__full">{{resource.fullText}}</span>
-        <br>
-        <span class="test-resource-card__type">{{resource.type}}</span>
-      </div>
-    {{/each}}
-  {{/new-search}}
+  {{new-search on-search=(action 'filterByQuery')}}
+  {{#each (take 6 filteredMedia) as |resource|}}
+    <div class="test-resource-card test-resource-card__title" href={{resource.url}} title={{resource.title}}>
+      <img src="{{resource.imageUrl}}">
+      <br>
+      <span class="test-resource-card__publishDate">{{resource.publishDate}}</span>
+      <br>
+      <span class="test-resource-card__full">{{resource.fullText}}</span>
+      <br>
+      <span class="test-resource-card__type">{{resource.type}}</span>
+    </div>
+  {{/each}}
   {{outlet}}
 </div>

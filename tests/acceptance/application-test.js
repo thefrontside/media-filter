@@ -37,12 +37,12 @@ describe('Acceptance: MediaFilter', function() {
       let card = $('.test-resource-card');
 
       expect(card).to.have.length(6);
-      expect(card.eq(0)).to.have.attr("title", "A Sprinkling of Ember");
-      expect(card.eq(1)).to.have.attr("title", "Implementing a Jenkins Extension Point with the Native Java API inside a Ruby Plugin");
-      expect(card.eq(2)).to.have.attr("title", "What it takes to bring Ruby to Jenkins");
-      expect(card.eq(3)).to.have.attr("title", "A Sprinkling of Ember");
-      expect(card.eq(4)).to.have.attr("title", "Implementing a Jenkins Extension Point with the Native Java API inside a Ruby Plugin");
-      expect(card.eq(5)).to.have.attr("title", "What it takes to bring Ruby to Jenkins");
+      expect(card.eq(0)).to.have.attr("title", "Dogs can code");
+      expect(card.eq(1)).to.have.attr("title", "How to teach people to stop using emacs");
+      expect(card.eq(2)).to.have.attr("title", "Mind Blown");
+      expect(card.eq(3)).to.have.attr("title", "How many lols can you get without trying");
+      expect(card.eq(4)).to.have.attr("title", "Mustangs and Cisco");
+      expect(card.eq(5)).to.have.attr("title", "How learning Javascript can make you ok I guess");
     });
 
     it("displays the filters", function() {
