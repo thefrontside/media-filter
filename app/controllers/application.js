@@ -1,45 +1,45 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  queryParams: ['type'],
+  queryParams: ['query', 'type'],
+  query: '',
   type: null,
 
-  filteredMedia: Ember.computed('type', 'model', function() {
-    var chosenType = this.get('type');
-    var mediaList = this.get('model');
+  _mediaByType: Ember.computed('type', 'model', function() {
+    var media = this.get('model');
+    var type = this.get('type');
+    let isFiltering = type !== null && type !== 'all';
 
-    if (chosenType == null) {
-      return mediaList;
-    } return mediaList.filter( item => {
-      return item.type === chosenType;
-    });
+    if (isFiltering) {
+      return media.filter((item) => {
+        return item.type === type;
+      });
+    }
+    return media;
   }),
 
-  //TODO: Need a computed property to filter by type on filteredMedia
+  filteredMedia: Ember.computed('_mediaByType', 'query', function() {
+    let media = this.get('_mediaByType');
+    let query = this.get('query');
+    let isQuerying = !!query.length;
+
+    if (isQuerying) {
+      return media.filter((resource) => {
+        return resource.fullText.match(query);
+      });
+    }
+    return media;
+  }),
 
   actions: {
-    filterByQuery( query) {
-      let dataset = this.get('filteredMedia');
-      if (query === '') {
-        this.set('filteredMedia', dataset);
-      } else {
-        let filteredDataset = dataset.filter((resource) => {
-          return resource.fullText.match(query);
-        });
-        this.set('filteredMedia', filteredDataset);
-      }
+    filterByQuery(query) {
+      // set the `query` to compute filteredMedia
+      this.set('query', query);
     },
 
     filterByType(type) {
-      let mediaList = this.get('model');
-      if (type === 'all') {
-        this.set('filteredMedia', mediaList);
-      } else {
-        let filteredModel = mediaList.filter( item => {
-          return item.type === type;
-        });
-        this.set('filteredMedia', filteredModel);
-      }
+      // set the `type` to compute _mediaByType
+      this.set('type', type);
     }
   }
 });
