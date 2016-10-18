@@ -84,13 +84,12 @@ describe('Acceptance: MediaFilter', function() {
     });
 
     describe("clicking on the podcast filter", function() {
-      let podcastButton = '.test-podcast-filter a';
+      let podcastButton = '.test-podcast-filter';
       let displayedCards = '.test-resource-card';
 
       beforeEach(function() {
         Ember.$(podcastButton).click().trigger('click');
       });
-
       it('updates the query param', function() {
         expect(currentURL()).to.be.equal('/?type=podcast');
       });
@@ -99,7 +98,6 @@ describe('Acceptance: MediaFilter', function() {
         let podcastCards = $(displayedCards).filter((idx, card) => {
           return Ember.$(card).find('.test-resource-card__type').text() === 'podcast';
         });
-
         expect(podcastCards).to.have.length(4);
       });
     });
