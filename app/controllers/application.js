@@ -1,30 +1,45 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  queryParams: ['type'],
+  queryParams: ['query', 'type'],
+  query: '',
   type: null,
 
+  _mediaByType: Ember.computed('type', 'model', function() {
+    var media = this.get('model');
+    var type = this.get('type');
+    let isFiltering = type !== null && type !== 'all';
 
-  filteredMedia: Ember.computed('type', 'model', function() {
-    var chosenType = this.get('type');
-    var mediaList = this.get('model');
+    if (isFiltering) {
+      return media.filter((item) => {
+        return item.type === type;
+      });
+    }
+    return media;
+  }),
 
-    if (chosenType == null) {
-      return mediaList;
-    } return mediaList.filter( item => {
-      return item.type === chosenType;
-    });
+  filteredMedia: Ember.computed('_mediaByType', 'query', function() {
+    let media = this.get('_mediaByType');
+    let query = this.get('query');
+    let isQuerying = !!query.length;
+
+    if (isQuerying) {
+      return media.filter((resource) => {
+        return resource.fullText.match(query);
+      });
+    }
+    return media;
   }),
 
   actions: {
-    filterByQuery(dataset, query) {
-      if (query === '') {
-        return dataset;
-      } else {
-        return dataset.filter(resource => {
-          return resource.fullText.match(query);
-        });
-      }
+    filterByQuery(query) {
+      // set the `query` to compute filteredMedia
+      this.set('query', query);
+    },
+
+    filterByType(type) {
+      // set the `type` to compute _mediaByType
+      this.set('type', type);
     }
   }
 });
