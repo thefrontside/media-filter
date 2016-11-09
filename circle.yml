@@ -1,14 +1,22 @@
-## Customize dependencies
+general:
+  branches:
+    ignore:
+      - release/1.0
+machine:
+  node:
+    version: 4.3.1
 dependencies:
+  cache_directories:
+    - bower_components
+    - ~/bin
   pre:
-    - bower install chai-jquery
-    - bower install ember
-    - bower install ember-cli-shims
-    - bower install ember-cli-test-loader
-    - bower install mocha
-    - bower install chai
-    - bower install ember-mocha-adapter
-    - bower install pretender
-    - bower install Faker
-    - bower install bootstrap
-    - bower install Faker
+    - npm install -g npm@^2
+    - which bower || npm install -g bower
+  override:
+    - npm install
+    - bower install
+deployment:
+  production:
+    branch: master
+    commands:
+      - ./node_modules/.bin/ember deploy production
