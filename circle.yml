@@ -19,4 +19,4 @@ deployment:
   production:
     branch: master
     commands:
-      - ./node_modules/.bin/ember deploy production
+      - ./node_modules/.bin/ember serve
